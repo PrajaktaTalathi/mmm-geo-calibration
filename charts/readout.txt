@@ -1,0 +1,32 @@
+MEDIA MIX MODEL READOUT (synthetic data)
+156 weeks, 5 channels. Reporting on the last 52 weeks (total media spend $7,581,753).
+Radio and OOH spend correlation: 0.89 (they mostly run in the same bursts)
+Geo test fed in: radio added 4,852 +/- 692 incremental applications over weeks 118-131 (burst + carryover); simulated truth was 4,613
+
+Cost per incremental application (CPIA), last 52 weeks. Range = 80% bootstrap interval.
+Channel                      Spend     True            Uncalibrated              Calibrated
+Paid search             $3,063,342       90             50 (30-119)             69 (34-120)
+Paid social             $1,474,908      116            165 (27-245)            171 (28-212)
+Affiliate / partner     $1,914,188      100            199 (55-322)            198 (52-434)
+Radio                     $632,151       75            142 (77-248)              78 (65-88)
+Out-of-home               $497,164      621            111 (59-283)       327 (114-no lift)
+
+Marginal CPIA (cost of the next application at current spend), calibrated model:
+  Paid search 180, Paid social 231, Affiliate / partner 483, Radio 97, Out-of-home 1,274
+
+Fit check: trained on the first 130 weeks, predicted the last 26. MAPE in-sample 2.3%, out-of-sample 2.3%.
+
+Budget re-split (same total, each channel held within -40% / +40% of current):
+Channel                  Uncalibrated plan   Calibrated plan
+Paid search                           +13%              +23%
+Paid social                            +5%               +1%
+Affiliate / partner                   -40%              -40%
+Radio                                 +14%              +40%
+Out-of-home                           +40%              -40%
+
+What each plan actually delivers against the simulated truth (incremental applications, 52 weeks):
+  current split                75,347
+  uncalibrated model plan      74,338  (-1,009; the model promised +1,973)
+  calibrated model plan        76,175  (+827; the model promised +3,629)
+
+Next experiment: Affiliate / partner. The plan moves -40% of its spend ($765,675) on a cost estimate the model can only place between 52-434. Test it before making that move.
